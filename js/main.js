@@ -10,7 +10,7 @@ const score = document.getElementById('score');
 
 // function to generate random number
 
-let ballNum = prompt('How many balls are in play?')
+let ballNum = 50 //prompt('How many balls are in play?')
 
 let scores = 0;
 
@@ -44,11 +44,13 @@ Ball.prototype.update = function() {
     this.velX = -(this.velX);
   }
   if ((this.y + this.size) >= height) {
-    this.velY = -(this.velY);
+    //this.velY = -(this.velY);
+    this.y = 0 + this.size;
   }
 
-  if ((this.y - this.size) <= 0) {
-    this.velY = -(this.velY);
+  if ((this.y + this.size) <= 0) {
+    //this.velY = -(this.velY);
+    this.y = height - this.size;
   }
 
   this.x += this.velX;
