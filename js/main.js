@@ -6,7 +6,13 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;
 
+const score = document.getElementById('score');
+
 // function to generate random number
+
+let ballNum = prompt('How many balls are in play?')
+
+let scores = 0;
 
 function random(min, max) {
   const num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -47,6 +53,8 @@ Ball.prototype.update = function() {
 
   this.x += this.velX;
   this.y += this.velY;
+
+  score.textContent=(scores);
 }
 
 
@@ -58,8 +66,9 @@ Ball.prototype.collisionDetect = function() {
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < this.size + balls[j].size) {
-        balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
-        //balls[j].color = this.size = 
+        balls[j].color = this.color = 'rgb(240, 0, 0)';
+        balls[j].color = this.size = this.size / 1.00001;
+        scores++;
       }
     }
   }
@@ -67,14 +76,14 @@ Ball.prototype.collisionDetect = function() {
 
 let balls = [];
 
-while (balls.length < 37) {
+while (balls.length < ballNum) {
   let size = random(3, 7);
   let ball = new Ball(
     random(0 + size,width - size),
     random(0 + size,height - size),
     random(-7, 7),
     random(-7, 7),
-    'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) + ')',
+    'rgb(0, 0, 240)',
     size
   );
 
